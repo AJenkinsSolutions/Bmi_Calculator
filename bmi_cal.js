@@ -26,24 +26,22 @@ app.post('/', (req, res) => {
         let w = req.body.weight;
         let hf = Number(req.body.height_f);
         let hi = Number(req.body.height_i);
-        calculateBmi(w, hf, hi, res);
+        let results_message = calculateBmi(w, hf, hi, res);
+        res.send('<h1 style="color:#EB4747;text-align:center;background-color: #ABC9FF;">' + results_message + '</h1>');
 
 })
 
- // Morning todos 
+
 // Create a result page html 
 // Displays resultse 
 // Design a simple one page layout 
 // add favicon 
 // add body, header, footer style 
-// add css 
-// commit to verison control 
 
 
-function calculateBmi(weight, height_feet, height_inches, res){
+function calculateBmi(weight, height_feet, height_inches){
 
     let hstring = height_feet + '.' + height_inches;
-    
     
     let height_i = hstring * 12;
 
@@ -51,22 +49,22 @@ function calculateBmi(weight, height_feet, height_inches, res){
     let bmi = Math.floor((weight/height_i/height_i) * 703);
 
     if (bmi >= 35){
-        res.send('Your BMI is ' + ' ' + bmi + ' Extermely Obese');
+        return('Your BMI is ' + ' ' + bmi + ' Extermely Obese');
     }
     if (bmi > 29)
     {
-        res.send('Your BMI is ' + ' ' + bmi + 'Obese');
+        return('Your BMI is ' + ' ' + bmi + 'Obese');
     
     }
     if (bmi > 24 && bmi < 29){
-            res.send('Your BMI is ' + ' ' + bmi + ' Overweight');
+            return('Your BMI is ' + ' ' + bmi + ' Overweight');
 
     }
     if (bmi > 18 && bmi <= 24 ){
-            res.send('Your BMI is ' + ' ' + bmi + ' Normal');
+            return('Your BMI is ' + ' ' + bmi + ' Normal');
 
     }else{
-            res.send('Your BMI is ' + ' ' + bmi + 'underweight');
+            return('Your BMI is ' + ' ' + bmi + 'underweight');
 
 }
 
